@@ -13,7 +13,8 @@ class MewralOldLSTM():
 
         prev_layer_size = input_size
         for _ in range(no_of_hidden_layers):
-            self.Hidden_Layers.append(Layers.LSTMMemoryCell(prev_layer_size, hidden_size))
+            current_layer = Layers.LSTMMemoryCell(prev_layer_size, hidden_size)
+            self.Hidden_Layers.append(current_layer)
             prev_layer_size = hidden_size
         
         self.Weights_hy = np.random.randn(hidden_size, output_size) * np.sqrt(1.0/self.hidden_size)
@@ -194,5 +195,9 @@ class MewralOldLSTM():
 
         return GA_weights_hy, GA_bias_y, GA_hidden_hh, GA_bias_h
                 
-
+    def shift_baises(self, bias_shifti:float=0.0, bias_shifto:float=0.0):
+        layer:Layers.LSTMMemoryCell
+        for layer in self.Hidden_Layers:
+            layer.input_gate_biases = np.full(self.hidden_size, bias_shifti)
+            layer.output_gate_biases = np.full(self.hidden_size, bias_shifto)
 

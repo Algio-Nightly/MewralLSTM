@@ -22,8 +22,8 @@ class Layers():
 
             #Biases Initialization
             self.input_biases = np.zeros(hidden_size)
-            self.input_gate_biases = np.full(hidden_size, -2.0)
-            self.output_gate_biases = np.full(hidden_size, -1.0)
+            self.input_gate_biases = np.full(hidden_size, 0.0)
+            self.output_gate_biases = np.full(hidden_size, 0.0)
 
             #State_Cell_Initialization
             self.state_cell = np.zeros(hidden_size)
